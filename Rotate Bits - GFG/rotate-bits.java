@@ -1,0 +1,52 @@
+//{ Driver Code Starts
+//Initial Template for Java
+
+import java.io.*;
+import java.util.*;
+
+class GFG
+{
+    public static void main(String args[])throws IOException
+    {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t-- > 0)
+        {
+            int n = sc.nextInt();
+            int d = sc.nextInt();
+            
+            Solution ob = new Solution();
+            
+            ArrayList<Integer> res = ob.rotate (n, d);
+            System.out.println(res.get(0));
+            System.out.println(res.get(1));
+            
+           
+        }
+    }
+}
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution
+{
+    ArrayList<Integer> rotate(int N, int D)
+    {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        
+        if (N == 0)
+        {
+            list.add(0); list.add(0);
+            return list;
+        }
+        
+        D = D % 16;
+        int mask = (1 << 16)-1;
+        
+        list.add(((N << D) | (N >> (16-D))) & mask);
+        list.add(((N >> D) | (N << (16-D))) & mask);
+        return list;
+    }
+}
