@@ -67,29 +67,35 @@ class Node
 
 class Solution
 {
-    public static Node reverse(Node head){
+    // Helper method to reverse a linked list
+    public static Node reverse(Node head)
+    {
+        // Initialize Prev and curr Nodes
         Node prev = null;
         Node curr = head;
         
-        while(curr != null){
+        // Iterate curr
+        while(curr != null)
+        {
             Node next = curr.next;
             curr.next = prev;
+            
             prev = curr;
             curr = next;
         }
         return prev;
     }
     
+    // Method to rearrange the linked list as per the problem statement
     public static void rearrange(Node head)
     {
-        // if (head == null || head.next == null || head.next.next == null)
-        //     return;
-            
         Node odd = head;
-        
+        // Initialize odd and even Nodes
+        // Initialize first_even to keep track of even Node
         Node even = head.next;
         Node first_even = head.next;
         
+        // Iterate even and odd
         while(even != null && even.next != null)
         {
             odd.next = even.next;
@@ -98,7 +104,7 @@ class Solution
             even.next = odd.next;
             even = even.next;
         }
-        
+        // Reverse the second part and link it to the first part
         odd.next = reverse(first_even);
     }
 }
